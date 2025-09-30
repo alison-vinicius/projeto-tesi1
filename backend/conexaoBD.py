@@ -1,26 +1,18 @@
 import sqlite3
-conexao = sqlite3.connect("banco.db")
-cursor = conexao.cursor()
-
-cursor.execute('''
-    CREATE TABLE usuario(nome text, telefone text)
-''')
-
-cursor.execute('''
-    INSERT INTO usuario(nome, telefone) values("Alison", 984182385)
-    
-''')
-
-cursor.execute('''
-    INSERT INTO usuario(nome, telefone) values("chaves", 123456789)
-''')
-
-cursor.execute('''
-    INSERT INTO usuario(nome, telefone) values("leo", 123456782)
-''')
+from sqlite3 import Error
 
 
+# class Conexao:
+#     def get_conexao(self):
+#         caminho = 'banco.db'
+#         try:
+#             con = sqlite3.connect(caminho)
+#             return con
+#         except Error as er:
+#             print(er)
+        
+caminho = 'banco.db'
+con = sqlite3.connect(caminho)
 
-conexao.commit()
-cursor.close()
-conexao.close()
+cursor = con.cursor()
+
