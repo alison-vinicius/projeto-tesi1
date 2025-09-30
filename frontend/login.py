@@ -1,32 +1,42 @@
 import ttkbootstrap as ttk
 from ttkbootstrap.constants import *
-from ttkbootstrap.style import Style
 
-app = ttk.Window("LOGIN")
-app.geometry("500x500")
-style = Style(theme="superhero")
+class Login:
+    def __init__(self, master):
+        self.janela = master
+    
+        self.janela.title('LOGIN')
+        self.janela.geometry('500x500')
+        self.lbl_login = ttk.Label(self.janela, text='LOGIN')
+        self.lbl_login.config(font=("Arial", 20, "bold"))
+        self.lbl_login.pack(pady=35)
+
+        self.email = ttk.Frame(self.janela)
+        self.email.pack(pady=18, padx=10, fill="x")
+        self.lbl_email = ttk.Label(self.email, text="Email:", font='Arial')
+        self.lbl_email.pack(side=LEFT, padx=5)
+        self.ent_email = ttk.Entry(self.email)
+        self.ent_email.pack(side=LEFT, fill="x", expand=True, padx=5)
+
+        self.senha = ttk.Frame(self.janela)
+        self.senha.pack(pady=18, padx=10, fill="x")
+        self.lbl_senha = ttk.Label(self.senha, text='Senha:', font='Arial')
+        self.lbl_senha.pack(side=LEFT, padx=5)
+        self.ent_senha = ttk.Entry(self.senha, show="*" )
+        self.ent_senha.pack(side=LEFT, fill="x", expand=True, padx=5)
+
+        self.botao = ttk.Frame(self.janela)
+        self.botao.pack(pady=30, padx=10, fill="x")
+        self.btn_cencelar_login = ttk.Button(self.botao, text="cancelar", bootstyle=DANGER)
+        self.btn_cencelar_login.pack(side=LEFT, padx=100)
+        self.btn_entrar_login = ttk.Button(self.botao, text="entrar", bootstyle=SUCCESS)
+        self.btn_entrar_login.pack(side=LEFT, padx=15)
 
 
+        
 
+        
 
-label = ttk.Label(app, text="LOGIN")
-label.pack(pady=35)
-label.config(font=("Arial", 20, "bold"))
-
-email = ttk.Frame(app)
-email.pack(pady=18, padx=10, fill="x")
-ttk.Label(email, text="Email:", font='Arial').pack(side=LEFT, padx=5)
-ttk.Entry(email).pack(side=LEFT, fill="x", expand=True, padx=5)
-
-senha = ttk.Frame(app)
-senha.pack(pady=18, padx=10, fill="x")
-ttk.Label(senha, text='Senha:', font='Arial').pack(side=LEFT, padx=5)
-ttk.Entry(senha, show="*" ).pack(side=LEFT, fill="x", expand=True, padx=5)
-
-botao = ttk.Frame(app)
-botao.pack(pady=30, padx=10, fill="x")
-ttk.Button(botao, text="cancelar", bootstyle=DANGER).pack(side=LEFT, padx=100)
-ttk.Button(botao, text="Enviar", bootstyle=SUCCESS).pack(side=LEFT, padx=15)
-
-
-app.mainloop()
+gui = ttk.Window(themename='superhero')
+Login(gui)
+gui.mainloop()
