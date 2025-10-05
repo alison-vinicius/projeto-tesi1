@@ -6,7 +6,6 @@ class Conexao:
         caminho = 'banco.db'
         try:
             con = sqlite3.connect(caminho)
-            print(con)
             return con
         except Error as er:
             print(er)

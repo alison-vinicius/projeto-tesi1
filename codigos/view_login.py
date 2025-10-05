@@ -1,6 +1,9 @@
 import ttkbootstrap as ttk
 from ttkbootstrap.constants import *
 from controller_login import LoginController
+from view_home_admin import HomeAdminView
+
+
 class Login_view:
     def __init__(self, master):
         self.janela = master
@@ -44,14 +47,25 @@ class Login_view:
         senha_digitada = self.ent_senha.get()
 
         # Chama a função da controller e recebe o resultado
-        sucesso, mensagem = self.controller.fazer_login(email_digitado, senha_digitada)
+        sucesso, mensagem, tipo_de_usuario = self.controller.fazer_login(email_digitado, senha_digitada)
+    
         
         # Atualiza a mensagem na interface
-        self.status_message.set(mensagem)
+        
         
         if sucesso:
-            self.lbl_status.config(bootstyle=SUCCESS)
+            self.janela.destroy()
+            nova_home = ttk.Window(themename='superhero')
+            if tipo_de_usuario == "ADMIN":
+                app_admin = HomeAdminView(nova_home)
+            elif tipo_de_usuario == "FUNCIONARIO":
+                print("funcionário")
+            elif tipo_de_usuario == "SOLICITANTE":
+                print("SOLICITANTE")
+
+                
         else:
+            self.status_message.set(mensagem)
             self.lbl_status.config(bootstyle=DANGER)
 
     
