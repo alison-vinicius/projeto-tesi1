@@ -2,6 +2,8 @@ import ttkbootstrap as ttk
 from ttkbootstrap.constants import *
 from controller_login import LoginController
 from view_home_admin import HomeAdminView
+from view_home_funcionario import HomeFuncionarioView
+from view_home_solicitante import HomeSolicitanteView
 
 
 class Login_view:
@@ -59,9 +61,9 @@ class Login_view:
             if tipo_de_usuario == "ADMIN":
                 app_admin = HomeAdminView(nova_home)
             elif tipo_de_usuario == "FUNCIONARIO":
-                print("funcionário")
+                app_funcionario = HomeFuncionarioView(nova_home)
             elif tipo_de_usuario == "SOLICITANTE":
-                print("SOLICITANTE")
+                app_solicitante = HomeSolicitanteView(nova_home)
 
                 
         else:
