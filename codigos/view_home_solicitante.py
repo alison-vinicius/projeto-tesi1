@@ -1,6 +1,7 @@
 import ttkbootstrap as ttk
 from ttkbootstrap.constants import *
 from PIL import Image, ImageTk
+from view_solicitar_galao import SolicitarGalaoView
 
 
 class HomeSolicitanteView(ttk.Toplevel):
@@ -28,6 +29,9 @@ class HomeSolicitanteView(ttk.Toplevel):
             bootstyle="primary",
             command=self.solicitar_galao
         )
+
+
+        
         self.btn_acompanhar.pack(side="left", padx=100)
 
 
@@ -49,7 +53,9 @@ class HomeSolicitanteView(ttk.Toplevel):
         return ImageTk.PhotoImage(img)
     
     def solicitar_galao(self):
-        print("oi")
+        solicita_galao = SolicitarGalaoView(self.janela)
+        solicita_galao.grab_set()
+        solicita_galao.wait_window()
         
 
         

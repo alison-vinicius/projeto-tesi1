@@ -13,8 +13,8 @@ class Login_view:
         self.status_message = ttk.StringVar()
     
         self.janela.title('LOGIN')
-        self.janela.geometry('500x400') # Ajustei o tamanho para ficar mais proporcional
-        self.janela.place_window_center() # Centraliza a janela
+        self.janela.geometry('500x400')
+        self.janela.place_window_center() 
 
         self.lbl_login = ttk.Label(self.janela, text='LOGIN', font=("Arial", 20, "bold"))
         self.lbl_login.pack(pady=20)
@@ -39,7 +39,7 @@ class Login_view:
         self.botao = ttk.Frame(self.janela)
         self.botao.pack(pady=20, padx=20, fill="x")
         
-        # Adicionei expand=True e fill='x' para os botões ocuparem o espaço
+        
         self.btn_cencelar_login = ttk.Button(self.botao, text="Cancelar", bootstyle=DANGER)
         self.btn_cencelar_login.pack(side=LEFT, expand=True, fill='x', padx=5)
         
@@ -50,12 +50,11 @@ class Login_view:
         email_digitado = self.ent_email.get()
         senha_digitada = self.ent_senha.get()
 
-        # Chama a função da controller e recebe o resultado
+        
         sucesso, mensagem, tipo_de_usuario = self.controller.fazer_login(email_digitado, senha_digitada)
     
         
-        # Atualiza a mensagem na interface
-        # nova_home = ttk.Window(themename='superhero')
+       
         if sucesso:
             self.janela.withdraw()
             if tipo_de_usuario == "ADMIN":

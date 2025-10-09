@@ -26,7 +26,7 @@ class HomeAdminView(ttk.Toplevel):
         self.ger_funcionarios = self.carregar_imagem("gerenciarFuncionarios.png", (350, 350))
         self.btn_acompanhar = ttk.Button(
             self.frame_botoes, 
-            text="gerenciar funcionários",
+            text="gerenciar funcionários,",
             image=self.ger_funcionarios,
             compound="top",
             bootstyle="primary",
