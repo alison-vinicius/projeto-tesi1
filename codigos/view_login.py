@@ -1,9 +1,11 @@
 import ttkbootstrap as ttk
 from ttkbootstrap.constants import *
 from controller_login import LoginController
+from controller_solicitar_galao import SolicitarGalaoController
 from view_home_admin import HomeAdminView
 from view_home_funcionario import HomeFuncionarioView
 from view_home_solicitante import HomeSolicitanteView
+
 
 
 class Login_view:
@@ -62,7 +64,7 @@ class Login_view:
             elif tipo_de_usuario == "FUNCIONARIO":
                 app_funcionario = HomeFuncionarioView(self.janela)
             elif tipo_de_usuario == "SOLICITANTE":
-                app_solicitante = HomeSolicitanteView(self.janela)
+                app_solicitante = HomeSolicitanteView(self.janela, email_digitado, senha_digitada)
 
                 
         else:

@@ -5,9 +5,11 @@ from view_solicitar_galao import SolicitarGalaoView
 
 
 class HomeSolicitanteView(ttk.Toplevel):
-    def __init__(self, master):
+    def __init__(self, master, email, senha):
         super().__init__(master)
         self.janela = master
+        self.email = email
+        self.senha = senha
         self.janela.title('PANIEL SOLICITANTE')
         self.janela.geometry("1000x1000")
         self.place_window_center()
@@ -53,7 +55,7 @@ class HomeSolicitanteView(ttk.Toplevel):
         return ImageTk.PhotoImage(img)
     
     def solicitar_galao(self):
-        solicita_galao = SolicitarGalaoView(self.janela)
+        solicita_galao = SolicitarGalaoView(self.janela, self.email, self.senha)
         solicita_galao.grab_set()
         solicita_galao.wait_window()
         
