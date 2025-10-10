@@ -88,11 +88,18 @@ class SolicitacaoModel:
         cursor = con.cursor()
 
         sql_todas = """
-            SELECT id_solicitacao, quantidade, dataSolicitacao, status, observacao
-            FROM solicitacao
-            ORDER BY dataSolicitacao DESC
+            SELECT s.id_solicitacao, s.quantidade, s.dataSolicitacao, s.status, s.observacao, se.nome
+            FROM solicitacao AS s
+            INNER JOIN setor AS se ON s.id_setor = se.id_setor
+            ORDER BY s.dataSolicitacao DESC
             """
         cursor.execute(sql_todas)
+        # sql_todas = """
+        #     SELECT id_solicitacao, quantidade, dataSolicitacao, status, observacao
+        #     FROM solicitacao
+        #     ORDER BY dataSolicitacao DESC
+        #     """
+        # cursor.execute(sql_todas)
             
         solicitacoes = cursor.fetchall()
         con.close()

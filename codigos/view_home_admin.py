@@ -1,6 +1,7 @@
 import ttkbootstrap as ttk
 from ttkbootstrap.constants import *
 from PIL import Image, ImageTk
+from view_gerenciar_funcionarios import GerenciarFuncionariosView
 
 class HomeAdminView(ttk.Toplevel):
     def __init__(self, master):
@@ -30,7 +31,7 @@ class HomeAdminView(ttk.Toplevel):
             image=self.ger_funcionarios,
             compound="top",
             bootstyle="primary",
-            # command=self.solicitar_galao
+            command=self.gerenciarFuncionarios
         )
         self.btn_acompanhar.pack(side="left", padx=100)
 
@@ -52,15 +53,12 @@ class HomeAdminView(ttk.Toplevel):
         img = Image.open(caminho_imagem)
         img = img.resize(tamanho, Image.LANCZOS)
         return ImageTk.PhotoImage(img)
+    
+    def gerenciarFuncionarios(self):
+        vis_solicitacoes = GerenciarFuncionariosView(self)
+        vis_solicitacoes.grab_set()
+        vis_solicitacoes.wait_window()
 
 
 
 
-
-# Código para teste, se quiser rodar este arquivo separadamente
-# if __name__ == '__main__':
-#     # Cria uma janela raiz principal apenas para o teste
-#     root = ttk.Window(themename='superhero')
-#     root.withdraw() # Esconde a janela raiz
-#     app = HomeAdminView(root)
-#     root.mainloop()

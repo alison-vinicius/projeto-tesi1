@@ -15,32 +15,33 @@ class MudarStatusView(ttk.Toplevel):
         self.lbl_titulo = ttk.Label(self, text="GERENCIAR SOLICITAÇÕES", font=("Arial", 20, "bold"))
         self.lbl_titulo.pack(pady=35)
 
-        # --- Configuração dos Estilos para Cores ---
         style = ttk.Style()
         style.configure("Treeview", font=("Arial", 12))
         style.configure("Treeview.Heading", font=("Arial", 14, "bold"))
-        style.configure("pendente.Treeview", background="#ffcccc", foreground="black") # Vermelho claro
-        style.configure("concluido.Treeview", background="#ccffcc", foreground="black") # Verde claro
-        style.configure("andamento.Treeview", background="#cce0ff", foreground="black") # Azul claro
-        style.configure("interrompido.Treeview", background="#ffffcc", foreground="black") # Amarelo claro
+        style.configure("pendente.Treeview", background="#ffcccc", foreground="black")
+        style.configure("concluido.Treeview", background="#ccffcc", foreground="black")
+        style.configure("andamento.Treeview", background="#cce0ff", foreground="black")
+        style.configure("interrompido.Treeview", background="#ffffcc", foreground="black")
         
-        # Cria o Treeview
-        self.tabela = ttk.Treeview(self, columns=("ID", "Quantidade", "Data", "Status", "Observação"), show="headings", height=10)
+        # Cria o Treeview, adicionando a nova coluna "Setor"
+        self.tabela = ttk.Treeview(self, columns=("ID", "Quantidade", "Data", "Status", "Observação", "Setor"), show="headings", height=10)
         self.tabela.pack(padx=20, pady=10, fill="both", expand=True)
 
-        # Configura as colunas
+        # Configura as colunas, incluindo o novo cabeçalho para o Setor
         self.tabela.heading("ID", text="ID")
         self.tabela.heading("Quantidade", text="Quantidade")
         self.tabela.heading("Data", text="Data da Solicitação")
         self.tabela.heading("Status", text="Status")
         self.tabela.heading("Observação", text="Observação")
+        self.tabela.heading("Setor", text="Setor")
 
-        # Esconde a coluna ID e ajusta a largura das outras
+        # Esconde a coluna ID e ajusta a largura das outras, incluindo o Setor
         self.tabela.column("ID", width=0, stretch=False) 
         self.tabela.column("Quantidade", width=80, anchor="center")
         self.tabela.column("Data", width=160, anchor="center")
         self.tabela.column("Status", width=100, anchor="center")
-        self.tabela.column("Observação", width=400, anchor="w")
+        self.tabela.column("Observação", width=300, anchor="w")
+        self.tabela.column("Setor", width=120, anchor="w")
 
         # Adiciona um frame para os controles de edição
         self.frm_controles = ttk.Frame(self)
@@ -48,18 +49,15 @@ class MudarStatusView(ttk.Toplevel):
         
         ttk.Label(self.frm_controles, text="Atualizar Status:").pack(side="left", padx=10)
         
-        # Cria o Combobox com as opções de status
         self.cmb_status = ttk.Combobox(self.frm_controles, values=["em andamento", "concluído", "interrompido"], state="readonly")
         self.cmb_status.pack(side="left", padx=10)
         
-        # Botão para atualizar
         self.btn_atualizar = ttk.Button(self.frm_controles, text="Atualizar", command=self.atualizar_status, bootstyle="info")
         self.btn_atualizar.pack(side="left", padx=10)
         
-        # Label de status para feedback
         self.lbl_status = ttk.Label(self, text="", font=("Arial", 12))
         self.lbl_status.pack(pady=5)
-
+        
         self.carregar_dados()
         self.tabela.bind("<<TreeviewSelect>>", self.on_item_select)
 
