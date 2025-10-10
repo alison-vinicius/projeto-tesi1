@@ -5,6 +5,7 @@ from controller_solicitar_galao import SolicitarGalaoController
 from view_home_admin import HomeAdminView
 from view_home_funcionario import HomeFuncionarioView
 from view_home_solicitante import HomeSolicitanteView
+from view_cadastrar_solicitante import CadastrarSolicitanteView
 
 
 
@@ -15,7 +16,7 @@ class Login_view:
         self.status_message = ttk.StringVar()
     
         self.janela.title('LOGIN')
-        self.janela.geometry('500x400')
+        self.janela.geometry('1000x1000')
         self.janela.place_window_center() 
 
         self.lbl_login = ttk.Label(self.janela, text='LOGIN', font=("Arial", 20, "bold"))
@@ -40,13 +41,29 @@ class Login_view:
 
         self.botao = ttk.Frame(self.janela)
         self.botao.pack(pady=20, padx=20, fill="x")
+
+
         
         
+
         self.btn_cencelar_login = ttk.Button(self.botao, text="Cancelar", bootstyle=DANGER)
         self.btn_cencelar_login.pack(side=LEFT, expand=True, fill='x', padx=5)
         
+        
         self.btn_entrar_login = ttk.Button(self.botao, text="Entrar", bootstyle=SUCCESS, command=self.enviar_dados)
         self.btn_entrar_login.pack(side=LEFT, expand=True, fill='x', padx=5)
+
+        self.botaoCad = ttk.Frame(self.janela)
+        self.botaoCad.pack(pady=20, padx=20, fill="x")
+        self.btn_cadastrar = ttk.Button(self.botaoCad, text="Cadastrar", bootstyle=PRIMARY, command=self.dadosCadastrais)
+        self.btn_cadastrar.pack(side=LEFT, expand=True, fill='x', padx=5)
+
+
+    def dadosCadastrais(self):
+        vis_cadastro = CadastrarSolicitanteView(self.janela)
+        vis_cadastro.grab_set()
+        vis_cadastro.wait_window()
+
 
     def enviar_dados(self):
         email_digitado = self.ent_email.get()
