@@ -62,4 +62,21 @@ class SolicitacaoModel:
         cursor.execute(sql_solicitacoes, (id_usuario,))
             
         solicitacoes = cursor.fetchall()
+        con.close()
+        return solicitacoes
+    
+    def buscar_solicitacoes_pendentes(self):
+        banco = conexaoBD.Conexao()
+        con = banco.get_conexao()
+        cursor = con.cursor()
+
+        sql_pendentes = """
+            SELECT quantidade, dataSolicitacao, status, observacao
+            FROM solicitacao
+            WHERE status = 'pendente'
+            ORDER BY dataSolicitacao ASC
+            """
+        cursor.execute(sql_pendentes)
+            
+        solicitacoes = cursor.fetchall()
         return solicitacoes

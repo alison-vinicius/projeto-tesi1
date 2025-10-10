@@ -1,6 +1,7 @@
 import ttkbootstrap as ttk
 from ttkbootstrap.constants import *
 from PIL import Image, ImageTk
+from view_solicitacoes_recebidas import SolicitacoesRecebidasView
 
 class HomeFuncionarioView(ttk.Toplevel):
     def __init__(self, master):
@@ -26,7 +27,7 @@ class HomeFuncionarioView(ttk.Toplevel):
             image=self.img_visualizarSolicitacoes,
             compound="top",
             bootstyle="primary",
-            # command=self.solicitar_galao
+            command=self.visualizar_sol
         )
         self.btn_acompanhar.pack(side="left", padx=100)
 
@@ -47,3 +48,8 @@ class HomeFuncionarioView(ttk.Toplevel):
         img = Image.open(caminho_imagem)
         img = img.resize(tamanho, Image.LANCZOS)
         return ImageTk.PhotoImage(img)
+
+    def visualizar_sol(self):
+        vis_solicitacoes = SolicitacoesRecebidasView(self.janela)
+        vis_solicitacoes.grab_set()
+        vis_solicitacoes.wait_window()
