@@ -15,5 +15,27 @@ depois de feita essa solicitação, o solicitante poderá visualiza como está o
 ![homeSolicitante](images/acompnharStatus.png)
 
 ## FUNCIONALIDADES PARA UM FUNCIONÁRIO DO SETOR DE ENTREGA DE GALÕES
+Ao fazer login como um funcionário, apareçerá duas opções visualizar as novas solicitações que foram feitas e mudar o status de entrega.
+![homeSolicitante](images/homeFuncionario.png)
+
 ### 3. Visualizar solicitações recebidas
+ao clicar em visualizar solicitações recebidas, será mostrado as novas solicitações que foram feitas pelo usuários.
+![homeSolicitante](images/solicitacoesRecebidas.png)
 ### 4. mudar o status de entrega
+o funcionário também pode mudar o status de entrega, que indica como está indo a entrega do galão no setor.
+para mudar o status ele clica em uma solicitação que aparece na treeview.
+![homeSolicitante](images/mudarStatus.png)
+
+e depois seleciona o tipo de status
+![homeSolicitante](images/selecionaStatus.png)
+
+em andamento: quando foi recebida a solicitação e está em processo de andamento para entrega no setor.
+
+concluido: quando a entrega foi realizada com sucesso.
+
+interrompido: caso tenha acontecido algum problema durante a entrega.
+
+
+
+
+

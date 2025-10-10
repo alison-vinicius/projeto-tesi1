@@ -24,7 +24,7 @@ class HomeFuncionarioView(ttk.Toplevel):
 
         self.btn_acompanhar = ttk.Button(
             self.frame_botoes, 
-            text="visualizar solicitações",
+            text="visualizar novas solicitações",
             image=self.img_visualizarSolicitacoes,
             compound="top",
             bootstyle="primary",
@@ -36,7 +36,7 @@ class HomeFuncionarioView(ttk.Toplevel):
         self.mudar_status = self.carregar_imagem("mudarStatus.png", (350, 350))
         self.btn_acompanhar = ttk.Button(
             self.frame_botoes, 
-            text="Acompanhar status de entrega",
+            text="mudar status de entrega",
             image=self.mudar_status,
             compound="top",
             bootstyle="primary",
