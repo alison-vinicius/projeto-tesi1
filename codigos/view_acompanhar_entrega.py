@@ -57,11 +57,10 @@ class acompanharEntregaView(ttk.Toplevel):
         
         if solicitacoes:
             for solicitacao in solicitacoes:
-                status = solicitacao[2]
-                if status == "pendente":
-                    tag = "vermelho"
+                # status = solicitacao[2]
+            
                     
-                self.tabela.insert("", "end", values=solicitacao, tags=(tag,))
+                self.tabela.insert("", "end", values=solicitacao)
         else:
             self.tabela.insert("", "end", values=("Nenhuma solicitação encontrada.", "", ""))
     

@@ -2,6 +2,7 @@ import ttkbootstrap as ttk
 from ttkbootstrap.constants import *
 from PIL import Image, ImageTk
 from view_solicitacoes_recebidas import SolicitacoesRecebidasView
+from view_mudar_status import MudarStatusView
 
 class HomeFuncionarioView(ttk.Toplevel):
     def __init__(self, master):
@@ -39,7 +40,7 @@ class HomeFuncionarioView(ttk.Toplevel):
             image=self.mudar_status,
             compound="top",
             bootstyle="primary",
-            # command=self.acompanhar_status
+            command=self.acompanhar_status
         )
         self.btn_acompanhar.pack(side="left", padx=100)
 
@@ -51,5 +52,10 @@ class HomeFuncionarioView(ttk.Toplevel):
 
     def visualizar_sol(self):
         vis_solicitacoes = SolicitacoesRecebidasView(self.janela)
+        vis_solicitacoes.grab_set()
+        vis_solicitacoes.wait_window()
+
+    def acompanhar_status(self):
+        vis_solicitacoes = MudarStatusView(self.janela)
         vis_solicitacoes.grab_set()
         vis_solicitacoes.wait_window()

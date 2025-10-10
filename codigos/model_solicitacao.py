@@ -79,4 +79,41 @@ class SolicitacaoModel:
         cursor.execute(sql_pendentes)
             
         solicitacoes = cursor.fetchall()
+        con.close()
         return solicitacoes
+    
+    def buscar_todas_solicitacoes(self):
+        banco = conexaoBD.Conexao()
+        con = banco.get_conexao()
+        cursor = con.cursor()
+
+        sql_todas = """
+            SELECT id_solicitacao, quantidade, dataSolicitacao, status, observacao
+            FROM solicitacao
+            ORDER BY dataSolicitacao DESC
+            """
+        cursor.execute(sql_todas)
+            
+        solicitacoes = cursor.fetchall()
+        con.close()
+        return solicitacoes
+    
+    def atualizar_status_solicitacao(self, id_solicitacao, novo_status):
+        banco = conexaoBD.Conexao()
+        con = banco.get_conexao()
+        cursor = con.cursor()
+
+        sql_update = """
+            UPDATE solicitacao
+            SET status = ?
+            WHERE id_solicitacao = ?
+            """
+        cursor.execute(sql_update, (novo_status, id_solicitacao))
+        con.commit()
+        con.close()
+        print(f"Status da solicitação {id_solicitacao} atualizado para {novo_status}")
+        return True
+    
+    
+
+    
