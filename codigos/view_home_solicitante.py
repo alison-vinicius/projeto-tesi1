@@ -2,6 +2,7 @@ import ttkbootstrap as ttk
 from ttkbootstrap.constants import *
 from PIL import Image, ImageTk
 from view_solicitar_galao import SolicitarGalaoView
+from view_acompanhar_entrega import  acompanharEntregaView
 
 
 class HomeSolicitanteView(ttk.Toplevel):
@@ -44,7 +45,7 @@ class HomeSolicitanteView(ttk.Toplevel):
             image=self.img_status_entrega,
             compound="top",
             bootstyle="primary",
-            # command=self.acompanhar_status
+            command=self.acompanhar_status
         )
         self.btn_acompanhar.pack(side="left", padx=100)
     
@@ -58,6 +59,11 @@ class HomeSolicitanteView(ttk.Toplevel):
         solicita_galao = SolicitarGalaoView(self.janela, self.email, self.senha)
         solicita_galao.grab_set()
         solicita_galao.wait_window()
+
+    def acompanhar_status(self):
+        status_entrega = acompanharEntregaView(self.janela, self.email, self.senha)
+        status_entrega.grab_set()
+        status_entrega.wait_window()
         
 
         
